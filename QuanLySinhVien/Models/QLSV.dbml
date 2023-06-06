@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="QLSV" Class="QLSVDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=DESKTOP-INCVNCA;Initial Catalog=QLSV;Integrated Security=True" SettingsObjectName="QuanLySinhVien.Properties.Settings" SettingsPropertyName="QLSVConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.BangDiem" Member="BangDiems">
+    <Type Name="BangDiem">
+      <Column Name="MaSV" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MaHP" Type="System.String" DbType="Char(4) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="DiemCC" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
+      <Column Name="DiemGK" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
+      <Column Name="DiemCK" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
+      <Association Name="HocPhan_BangDiem" Member="HocPhan" ThisKey="MaHP" OtherKey="MaHP" Type="HocPhan" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="SinhVien_BangDiem" Member="SinhVien" ThisKey="MaSV" OtherKey="MaSV" Type="SinhVien" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.HocPhan" Member="HocPhans">
+    <Type Name="HocPhan">
+      <Column Name="MaHP" Type="System.String" DbType="Char(4) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TenHP" Type="System.String" DbType="NVarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="SoTC" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="HocPhan_BangDiem" Member="BangDiems" ThisKey="MaHP" OtherKey="MaHP" Type="BangDiem" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SinhVien" Member="SinhViens">
+    <Type Name="SinhVien">
+      <Column Name="MaSV" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="HoDem" Type="System.String" DbType="NVarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="Ten" Type="System.String" DbType="NVarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="GioiTinh" Type="System.String" DbType="NVarChar(3) NOT NULL" CanBeNull="false" />
+      <Column Name="MaLop" Type="System.String" DbType="NChar(9) NOT NULL" CanBeNull="false" />
+      <Column Name="NgaySinh" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="QueQuan" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="SoDT" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Association Name="SinhVien_BangDiem" Member="BangDiems" ThisKey="MaSV" OtherKey="MaSV" Type="BangDiem" />
+      <Association Name="ThongTinLop_SinhVien" Member="ThongTinLop" ThisKey="MaLop" OtherKey="MaLop" Type="ThongTinLop" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ThongTinLop" Member="ThongTinLops">
+    <Type Name="ThongTinLop">
+      <Column Name="MaLop" Type="System.String" DbType="NChar(9) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TenLop" Type="System.String" DbType="NVarChar(30) NOT NULL" CanBeNull="false" />
+      <Association Name="ThongTinLop_SinhVien" Member="SinhViens" ThisKey="MaLop" OtherKey="MaLop" Type="SinhVien" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TaiKhoan" Member="TaiKhoans">
+    <Type Name="TaiKhoan">
+      <Column Name="TenTK" Type="System.String" DbType="NChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MatKhau" Type="System.String" DbType="NChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="HoDem" Type="System.String" DbType="NVarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="Ten" Type="System.String" DbType="NVarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="GioiTinh" Type="System.String" DbType="NVarChar(3) NOT NULL" CanBeNull="false" />
+      <Column Name="QueQuan" Type="System.String" DbType="NVarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="NgaySinh" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="SoDT" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+</Database>

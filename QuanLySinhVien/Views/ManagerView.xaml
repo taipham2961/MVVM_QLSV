@@ -1,0 +1,1011 @@
+﻿<Window x:Class="QuanLySinhVien.Views.ManagerView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:local="clr-namespace:QuanLySinhVien.Views"
+        mc:Ignorable="d"
+        Background="#2E3137"
+        WindowStartupLocation="CenterScreen"
+        Title="ManagerView"
+        Name="managerView"
+        DataContext="{StaticResource ManagerVM}"
+        Height="830"
+        Width="1300">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedWindowCommand}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <Grid>
+        <TabControl TabStripPlacement="Top"
+                    Name="tabControl"
+                    SelectedIndex="0">
+            <TabItem Header="Sinh viên"
+                     Name="SinhVien">
+                <Border Background="#171835"
+                        CornerRadius="20"
+                        Margin="20">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="100" />
+                            <RowDefinition Height="200" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="70" />
+                        </Grid.RowDefinitions>
+                        <StackPanel Grid.Row="0">
+                            <StackPanel>
+                                <Label Content="Tìm kiếm thông tin"
+                                       Foreground="White"
+                                       Margin="10" />
+                            </StackPanel>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="300" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="250" />
+                                </Grid.ColumnDefinitions>
+
+                                <StackPanel Grid.Column="0"
+                                            Orientation="Horizontal"
+                                            HorizontalAlignment="Center">
+                                    <Label Content="Mã sinh viên tìm kiếm"
+                                           Foreground="White"
+                                           Margin="10" />
+                                    <TextBox Name="txbMaSVTK"
+                                             Text="{Binding MaSVTK_SinhVien}"
+                                             Margin="10"
+                                             Width="150"
+                                             Height="30" />
+                                </StackPanel>
+
+                                <StackPanel Grid.Column="1"
+                                            Orientation="Horizontal"
+                                            HorizontalAlignment="Center">
+                                    <Label Content="Họ tên sinh viên tìm kiếm"
+                                           Foreground="White"
+                                           Margin="10" />
+                                    <TextBox Name="txbHoTenTK"
+                                             Text="{Binding HoTenTK_SinhVien}"
+                                             Margin="10"
+                                             Width="150"
+                                             Height="30" />
+                                </StackPanel>
+
+                                <StackPanel Grid.Column="2"
+                                            Orientation="Horizontal"
+                                            HorizontalAlignment="Center">
+                                    <Label Content="Mã lớp tìm kiếm"
+                                           Foreground="White"
+                                           Margin="10" />
+                                    <ComboBox Name="cbMaLopTK"
+                                              SelectedItem="{Binding MaLopTK_SinhVien}"
+                                              ItemsSource="{Binding DanhSachMaLop_SinhVien}"
+                                              Width="150"
+                                              Height="30"
+                                              Margin="10" />
+                                </StackPanel>
+                                <Button Grid.Column="3"
+                                        Name="btnTimKiemSV"
+                                        HorizontalAlignment="Center"
+                                        Command="{Binding TimKiemCommand_SinhVien}"
+                                        Content="Tìm kiếm"
+                                        Style="{StaticResource ButtonRed}"
+                                        Foreground="White"
+                                        Width="100"
+                                        Height="30"
+                                        Margin="10" />
+                            </Grid>
+                        </StackPanel>
+                        <!--Dữ liệu sinh viên-->
+                        <DataGrid Grid.Row="1"
+                                  Name="dgDanhSachSinhVien"
+                                  Width="{Binding Path=ActualWidth,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=Grid}}"
+                                  AutoGenerateColumns="False"
+                                  IsReadOnly="True"
+                                  CanUserAddRows="False"
+                                  SelectionUnit="FullRow"
+                                  SelectionMode="Single"
+                                  SelectedItem="{Binding SelectedItem_SinhVien,Mode=OneWayToSource}"
+                                  ItemsSource="{Binding DanhSach_SinhVien}"
+                                  Background="#171835">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn  Header="Mã sv"
+                                                     Binding="{Binding Path=MaSV}"
+                                                     Width="*" />
+                                <DataGridTextColumn  Header="Họ đệm"
+                                                     Binding="{Binding Path=HoDem}"
+                                                     Width="*" />
+                                <DataGridTextColumn  Header="Tên"
+                                                     Binding="{Binding Path=Ten}"
+                                                     Width="*" />
+                                <DataGridTextColumn  Header="Mã lớp"
+                                                     Binding="{Binding Path=MaLop}"
+                                                     Width="*" />
+                                <DataGridTextColumn  Header="Giới tính"
+                                                     Binding="{Binding Path=GioiTinh}"
+                                                     Width="*" />
+                                <DataGridTextColumn  Header="Ngày sinh"
+                                                     Binding="{Binding Path=NgaySinh, StringFormat=dd/MM/yyyy}"
+                                                     Width="*" />
+                                <DataGridTextColumn  Header="Quê quán"
+                                                     Binding="{Binding Path=QueQuan}"
+                                                     Width="*" />
+                                <DataGridTextColumn  Header="Số điện thoại"
+                                                     Binding="{Binding Path=SoDT}"
+                                                     Width="*" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <GroupBox Grid.Row="2"
+                                  Margin="10"
+                                  Padding="10"
+                                  HorizontalAlignment="Center">
+                            <GroupBox.Header>
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="Images\info_student.png"
+                                           Margin="5"
+                                           Width="45"
+                                           Height="45" />
+                                    <TextBlock FontWeight="Bold"
+                                               VerticalAlignment="Center">Thông tin sinh viên</TextBlock>
+                                </StackPanel>
+                            </GroupBox.Header>
+                            <StackPanel Orientation="Horizontal">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                </Grid>
+                                <StackPanel Grid.Column="0"
+                                            Orientation="Vertical">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Label Content="Mã sinh viên"
+                                               Margin="10"
+                                               Foreground="White" />
+                                        <TextBox Name="txbMaSV"
+                                                 IsReadOnly="True"
+                                                 Text="{Binding MaSV_SinhVien}"
+                                                 Margin="30 10"
+                                                 Width="150"
+                                                 Height="30" />
+                                    </StackPanel>
+
+                                    <StackPanel Orientation="Horizontal">
+                                        <Label Content="Họ đệm sinh viên"
+                                               Margin="10"
+                                               Foreground="White" />
+                                        <TextBox Name="txbHoDemSV"
+                                                 Text="{Binding HoDem_SinhVien}"
+                                                 Margin="5 10"
+                                                 Height="30"
+                                                 Width="150" />
+                                    </StackPanel>
+
+                                    <StackPanel Orientation="Horizontal">
+                                        <Label Content="Tên sinh viên"
+                                               Margin="10"
+                                               Foreground="White" />
+                                        <TextBox Name="txbTenSV"
+                                                 Text="{Binding Ten_SinhVien}"
+                                                 Margin="30 10"
+                                                 Height="30"
+                                                 Width="150" />
+                                    </StackPanel>
+
+                                    <StackPanel Orientation="Horizontal">
+                                        <Label Content="Lớp"
+                                               Margin="10"
+                                               Foreground="White" />
+                                        <ComboBox Name="cbMaLopSV"
+                                                  Text="{Binding MaLop_SinhVien}"
+                                                  ItemsSource="{Binding DanhSachMaLop_SinhVien}"
+                                                  Margin="77 10"
+                                                  Height="30"
+                                                  Width="150" />
+                                    </StackPanel>
+                                </StackPanel>
+                                <StackPanel Grid.Column="1"
+                                            Orientation="Vertical">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Label Content="Giới tính"
+                                               Margin="10"
+                                               Foreground="White" />
+                                        <TextBox Name="txbGioiTinhSV"
+                                                 Text="{Binding GioiTinh_SinhVien}"
+                                                 Margin="59 10"
+                                                 Height="30"
+                                                 Width="150" />
+                                    </StackPanel>
+
+                                    <StackPanel Orientation="Horizontal">
+                                        <Label Content="Ngày sinh"
+                                               Margin="10"
+                                               Foreground="White" />
+                                        <DatePicker Name="dpNgaySinhSV"
+                                                    SelectedDate="{Binding NgaySinh_SinhVien}"
+                                                    Margin="48 10"
+                                                    Height="30"
+                                                    Width="150" />
+                                    </StackPanel>
+
+                                    <StackPanel Orientation="Horizontal">
+                                        <Label Content="Quê quán"
+                                               Margin="10"
+                                               Foreground="White" />
+                                        <TextBox Name="txbQueQuanSV"
+                                                 Text="{Binding QueQuan_SinhVien}"
+                                                 Margin="50 10"
+                                                 Height="30"
+                                                 Width="150" />
+                                    </StackPanel>
+
+                                    <StackPanel Orientation="Horizontal">
+                                        <Label Content="Số điện thoại"
+                                               Margin="10"
+                                               Foreground="White" />
+                                        <TextBox Name="txbSoDTSV"
+                                                 Text="{Binding SoDT_SinhVien}"
+                                                 Margin="33 10"
+                                                 Height="30"
+                                                 Width="150" />
+                                    </StackPanel>
+                                </StackPanel>
+                            </StackPanel>
+                        </GroupBox>
+
+                        <StackPanel Grid.Row="3"
+                                    Orientation="Horizontal"
+                                    HorizontalAlignment="Center">
+                            <Button Content="Cập nhật"
+                                    Name="btnCapNhatSV"
+                                    Command="{Binding CapNhatCommand_SinhVien}"
+                                    Margin="20 10"
+                                    Style="{StaticResource ButtonRed}"
+                                    Width="100"
+                                    Height="30"
+                                    Foreground="White" />
+                            <Button Content="Bảng điểm"
+                                    Name="btnBangDiemSV"
+                                    Command="{Binding BangDiemCommand_SinhVien}"
+                                    CommandParameter="{Binding ElementName=tabControl}"
+                                    Margin="20 10"
+                                    Style="{StaticResource ButtonRed}"
+                                    Width="100"
+                                    Height="30"
+                                    Foreground="White" />
+                            <Button Content="Thêm sinh viên"
+                                    Name="btnThemSV"
+                                    Margin="20 10"
+                                    Command="{Binding ThemCommand_SinhVien}"
+                                    CommandParameter="{Binding ElementName=btnOK_SinhVien}"
+                                    Style="{StaticResource ButtonRed}"
+                                    Width="100"
+                                    Height="30"
+                                    Foreground="White" />
+                            <Button Content="Xóa sinh viên"
+                                    Name="btnXoaSV"
+                                    Margin="20 10"
+                                    Command="{Binding XoaCommand_SinhVien}"
+                                    Style="{StaticResource ButtonRed}"
+                                    Width="100"
+                                    Height="30"
+                                    Foreground="White" />
+                            <Button Name="btnOK_SinhVien"
+                                    Visibility="Collapsed"
+                                    Content="OK"
+                                    Margin="20 10"
+                                    Command="{Binding OKCommand_SinhVien}"
+                                    CommandParameter="{Binding ElementName=btnOK_SinhVien}"
+                                    Style="{StaticResource ButtonGreen}"
+                                    Width="100"
+                                    Height="30"
+                                    Foreground="White" />
+                        </StackPanel>
+                    </Grid>
+                </Border>
+            </TabItem>
+            <TabItem Header="Danh sách điểm học phần"
+                     Name="BangDiem">
+                <ScrollViewer>
+                    <Border CornerRadius="20"
+                            Margin="20">
+                        <Grid>
+                            <Grid x:Name="duLieu"
+                                  Background="#171835">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="350" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <GroupBox Grid.Row="0"
+                                          Margin="10"
+                                          Padding="10"
+                                          HorizontalAlignment="Center">
+                                    <GroupBox.Header>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Image Source="Images\info_student.png"
+                                                   Margin="5"
+                                                   Width="45"
+                                                   Height="45" />
+                                            <TextBlock FontWeight="Bold"
+                                                       VerticalAlignment="Center">Thông tin sinh viên</TextBlock>
+                                        </StackPanel>
+                                    </GroupBox.Header>
+                                    <StackPanel Grid.Row="0">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+
+                                            <StackPanel Grid.Column="0"
+                                                        Orientation="Vertical">
+                                                <StackPanel Orientation="Horizontal">
+                                                    <Label Content="Mã sinh viên"
+                                                           Margin="10"
+                                                           Foreground="White" />
+                                                    <TextBox Name="txbMaSV_BangDiem"
+                                                             Text="{Binding MaSV_BangDiem}"
+                                                             Margin="30 10"
+                                                             Height="30"
+                                                             Width="150" />
+                                                </StackPanel>
+
+                                                <StackPanel Orientation="Horizontal">
+                                                    <Label Content="Họ tên sinh viên"
+                                                           Margin="10"
+                                                           Foreground="White" />
+                                                    <TextBox Name="txbHoTen_BangDiem"
+                                                             Text="{Binding HoTen_BangDiem}"
+                                                             Margin="10 10"
+                                                             Height="30"
+                                                             Width="150" />
+                                                </StackPanel>
+
+                                                <StackPanel Orientation="Horizontal">
+                                                    <Label Content="Lớp"
+                                                           Margin="10"
+                                                           Foreground="White" />
+                                                    <TextBox Name="txbMaLop_BangDiem"
+                                                             Text="{Binding MaLop_BangDiem}"
+                                                             Margin="77 10"
+                                                             Height="30"
+                                                             Width="150" />
+                                                </StackPanel>
+
+                                                <StackPanel Orientation="Horizontal">
+                                                    <Label Content="Giới tính"
+                                                           Margin="10"
+                                                           Foreground="White" />
+                                                    <TextBox Name="txbGioiTinh_BangDiem"
+                                                             Text="{Binding GioiTinh_BangDiem}"
+                                                             Margin="55 10"
+                                                             Height="30"
+                                                             Width="150" />
+                                                </StackPanel>
+                                            </StackPanel>
+
+                                            <StackPanel Grid.Column="1"
+                                                        Orientation="Vertical">
+                                                <StackPanel Orientation="Horizontal">
+                                                    <Label Content="Ngày sinh"
+                                                           Margin="10"
+                                                           Foreground="White" />
+                                                    <TextBox Name="txbNgaySinh_BangDiem"
+                                                             Text="{Binding NgaySinh_BangDiem,StringFormat=dd/MM/yyyy}"
+                                                             Margin="48 10"
+                                                             Height="30"
+                                                             Width="150" />
+                                                </StackPanel>
+
+                                                <StackPanel Orientation="Horizontal">
+                                                    <Label Content="Quê quán"
+                                                           Margin="10"
+                                                           Foreground="White" />
+                                                    <TextBox Name="txbQueQuan_BangDiem"
+                                                             Text="{Binding QueQuan_BangDiem}"
+                                                             Margin="49 10"
+                                                             Height="30"
+                                                             Width="150" />
+                                                </StackPanel>
+
+                                                <StackPanel Orientation="Horizontal">
+                                                    <Label Content="Số điện thoại"
+                                                           Margin="10"
+                                                           Foreground="White" />
+                                                    <TextBox Name="txbSoDT_BangDiem"
+                                                             Text="{Binding SoDT_BangDiem}"
+                                                             Margin="33 10"
+                                                             Height="30"
+                                                             Width="150" />
+                                                </StackPanel>
+                                            </StackPanel>
+                                        </Grid>
+                                    </StackPanel>
+                                </GroupBox>
+                                <StackPanel Grid.Row="1"
+                                            Orientation="Vertical">
+                                    <Label Content="Bảng điểm"
+                                           Foreground="White"
+                                           FontSize="15"
+                                           HorizontalAlignment="Center" />
+                                    <DataGrid Name="dgBangDiem"
+                                              Width="{Binding Path=ActualWidth,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=Grid}}"
+                                              AutoGenerateColumns="False"
+                                              SelectionMode="Single"
+                                              SelectionUnit="FullRow"
+                                              ItemsSource="{Binding DanhSach_BangDiem}">
+                                        <DataGrid.Columns>
+                                            <DataGridTextColumn Header="Mã học phần"
+                                                                Binding="{Binding Path=MaHP}"
+                                                                Width="*" />
+                                            <DataGridTextColumn Header="Tên học phần"
+                                                                Binding="{Binding Path=TenHP}"
+                                                                Width="Auto" />
+                                            <DataGridTextColumn Header="Số tín chỉ"
+                                                                Binding="{Binding Path=SoTC}"
+                                                                Width="*" />
+                                            <DataGridTextColumn Header="Điểm chuyên cần"
+                                                                Binding="{Binding Path=DiemCC,StringFormat=N2}"
+                                                                Width="Auto" />
+                                            <DataGridTextColumn Header="Điểm giữa kỳ"
+                                                                Binding="{Binding Path=DiemGK,StringFormat=N2}"
+                                                                Width="*" />
+                                            <DataGridTextColumn Header="Điểm cuối kỳ"
+                                                                Binding="{Binding Path=DiemCK,StringFormat=N2}"
+                                                                Width="*" />
+                                            <DataGridTextColumn Header="Kết quả"
+                                                                Binding="{Binding Path=KetQua,StringFormat=N2}"
+                                                                Width="*" />
+                                        </DataGrid.Columns>
+                                    </DataGrid>
+                                </StackPanel>
+                            </Grid>
+                            <StackPanel Orientation="Horizontal"
+                                        VerticalAlignment="Top"
+                                        HorizontalAlignment="Right">
+                                <Button Content="In"
+                                        Name="btnPrint"
+                                        Command="{Binding PrintCommand_BangDiem}"
+                                        CommandParameter="{Binding ElementName=duLieu}"
+                                        Margin="10"
+                                        Width="100"
+                                        Height="30"
+                                        Style="{StaticResource ButtonRed}"
+                                        Foreground="White" />
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+                </ScrollViewer>
+            </TabItem>
+            <TabItem Header="Điểm - Học phần"
+                     Name="Diem_HocPhan">
+                <Border CornerRadius="20"
+                        Margin="20"
+                        Background="#171835">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="5" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="250" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="90" />
+                            </Grid.RowDefinitions>
+
+                            <StackPanel Grid.Row="0"
+                                        VerticalAlignment="Top"
+                                        Margin="5">
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Content="Thông tin sinh viên"
+                                           Foreground="White"
+                                           Margin="10" />
+                                    <TextBox Name="txbMaSVTK_Diem"
+                                             Text="{Binding MaSVTK_Diem}"
+                                             Width="150"
+                                             Height="30"
+                                             Margin="20 10" />
+                                    <Button Content="Kiểm tra"
+                                            Name="btnKiemTraSV"
+                                            Command="{Binding KiemTraSVCommand_Diem}"
+                                            Style="{StaticResource ButtonRed}"
+                                            Foreground="White"
+                                            Width="100"
+                                            Height="30"
+                                            Margin="10" />
+                                </StackPanel>
+                                <GroupBox Header="Thông tin sinh viên"
+                                          Padding="5"
+                                          Margin="5">
+                                    <StackPanel Orientation="Vertical">
+                                        <StackPanel Orientation="Horizontal">
+                                            <Label Content="Mã sinh viên"
+                                                   Margin="10"
+                                                   Foreground="White" />
+                                            <TextBox Name="txbMaSV_Diem"
+                                                     Text="{Binding MaSV_Diem}"
+                                                     Margin="30 10"
+                                                     Width="150"
+                                                     IsReadOnly="True" />
+                                        </StackPanel>
+
+                                        <StackPanel Orientation="Horizontal">
+                                            <Label Content="Họ tên sinh viên"
+                                                   Margin="10"
+                                                   Foreground="White" />
+                                            <TextBox Name="txbHoTen_Diem"
+                                                     Text="{Binding HoTen_Diem}"
+                                                     Margin="10 10"
+                                                     Width="150"
+                                                     IsReadOnly="True" />
+                                        </StackPanel>
+
+                                        <StackPanel Orientation="Horizontal">
+                                            <Label Content="Lớp"
+                                                   Margin="10"
+                                                   Foreground="White" />
+                                            <TextBox Name="txbMaLop_Diem"
+                                                     Text="{Binding MaLop_Diem}"
+                                                     Margin="77 10"
+                                                     Width="150"
+                                                     IsReadOnly="True" />
+                                        </StackPanel>
+                                    </StackPanel>
+                                </GroupBox>
+                            </StackPanel>
+                            <StackPanel Grid.Row="1"
+                                        VerticalAlignment="Top"
+                                        Margin="5">
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Content="Thông tin học phần"
+                                           Foreground="White"
+                                           Margin="10" />
+                                    <TextBox Name="txbMaHPTK_Diem"
+                                             Text="{Binding MaHPTK_Diem}"
+                                             Width="150"
+                                             Height="30"
+                                             Margin="20 10" />
+                                    <Button Content="Kiểm tra"
+                                            Name="btnKiemTraHP"
+                                            Command="{Binding KiemTraHPCommand_Diem}"
+                                            Style="{StaticResource ButtonRed}"
+                                            Foreground="White"
+                                            Width="100"
+                                            Height="30"
+                                            Margin="10" />
+                                </StackPanel>
+                                <GroupBox Header="Thông tin học phần"
+                                          Padding="5"
+                                          Margin="5">
+                                    <StackPanel Orientation="Vertical">
+                                        <StackPanel Orientation="Horizontal">
+                                            <Label Content="Mã học phần"
+                                                   Margin="10"
+                                                   Foreground="White" />
+                                            <TextBox Name="txbMaHP_Diem"
+                                                     Text="{Binding MaHP_Diem}"
+                                                     Margin="50 10"
+                                                     Width="150"
+                                                     IsReadOnly="True" />
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Label Content="Tên học phần"
+                                                   Margin="10"
+                                                   Foreground="White" />
+                                            <TextBox Name="txbTenHP_Diem"
+                                                     Text="{Binding TenHP_Diem}"
+                                                     Margin="50 10"
+                                                     Width="150"
+                                                     IsReadOnly="True" />
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Label Content="Điểm chuyên cần"
+                                                   Margin="10"
+                                                   Foreground="White" />
+                                            <TextBox Name="txbDiemCC_Diem"
+                                                     Text="{Binding DiemCC_Diem,StringFormat=N2}"
+                                                     Margin="30 10"
+                                                     Width="150" />
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Label Content="Điểm giữa kì"
+                                                   Margin="10"
+                                                   Foreground="White" />
+                                            <TextBox Name="txbDiemGK_Diem"
+                                                     Text="{Binding DiemGK_Diem,StringFormat=N2}"
+                                                     Margin="54 10"
+                                                     Width="150" />
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Label Content="Điểm cuối kì"
+                                                   Margin="10"
+                                                   Foreground="White" />
+                                            <TextBox Name="txbDiemCK_Diem"
+                                                     Text="{Binding DiemCK_Diem,StringFormat=N2}"
+                                                     Margin="56 10"
+                                                     Width="150" />
+                                        </StackPanel>
+                                    </StackPanel>
+                                </GroupBox>
+                            </StackPanel>
+                            <StackPanel Grid.Row="2"
+                                        Orientation="Vertical"
+                                        Margin="10">
+                                <StackPanel>
+                                    <TextBlock Name="txbThongTinNhapDiem_Diem"
+                                               Text="{Binding ThongTinNhapDiem_Diem}"
+                                               Foreground="White"
+                                               Margin="5"
+                                               FontSize="15" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <Button Content="Nhập điểm"
+                                            Name="btnNhapDiem"
+                                            Margin="20 10"
+                                            Command="{Binding NhapDiemCommand_Diem}"
+                                            Style="{StaticResource ButtonRed}"
+                                            Width="100"
+                                            Height="30"
+                                            Foreground="White" />
+                                    <Button Content="Sửa điểm"
+                                            Name="btnSuaDiem"
+                                            Margin="20 10"
+                                            Command="{Binding SuaDiemCommand_Diem}"
+                                            Style="{StaticResource ButtonRed}"
+                                            Width="100"
+                                            Height="30"
+                                            Foreground="White" />
+                                    <Button Content="Xóa điểm"
+                                            Name="btnXoaDiem"
+                                            Margin="20 10"
+                                            Command="{Binding XoaDiemCommand_Diem}"
+                                            Style="{StaticResource ButtonRed}"
+                                            Width="100"
+                                            Height="30"
+                                            Foreground="White" />
+                                </StackPanel>
+                            </StackPanel>
+                        </Grid>
+                        <GridSplitter Grid.Column="1"
+                                      Width="5"
+                                      HorizontalAlignment="Stretch" />
+                        <Grid Grid.Column="2">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="50" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Label Grid.Row="0"
+                                   Content="Danh sách học phần"
+                                   HorizontalAlignment="Center"
+                                   Margin="10"
+                                   Foreground="White"
+                                   FontSize="15" />
+                            <DataGrid Grid.Row="1"
+                                      Name="dgDanhSachHocPhan"
+                                      Width="{Binding Path=ActualWidth,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=Grid}}"
+                                      AutoGenerateColumns="False"
+                                      IsReadOnly="True"
+                                      CanUserAddRows="False"
+                                      SelectionUnit="FullRow"
+                                      SelectionMode="Single"
+                                      Background="#171835"
+                                      SelectedItem="{Binding SelectedItem_HocPhan,Mode=OneWayToSource}"
+                                      ItemsSource="{Binding DanhSach_HocPhan}">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Mã học phần"
+                                                        Binding="{Binding Path=MaHP}"
+                                                        Width="*" />
+                                    <DataGridTextColumn Header="Tên học phần"
+                                                        Binding="{Binding Path=TenHP}"
+                                                        Width="*" />
+                                    <DataGridTextColumn Header="Số tín chỉ"
+                                                        Binding="{Binding Path=SoTC}"
+                                                        Width="*" />
+                                </DataGrid.Columns>
+                            </DataGrid>
+                            <StackPanel Grid.Row="2"
+                                        Orientation="Vertical"
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Center">
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Content="Mã học phần"
+                                           Margin="10"
+                                           Foreground="White" />
+                                    <TextBox Name="txbMaHP_HocPhan"
+                                             Text="{Binding MaHP_HocPhan}"
+                                             Margin="30 10"
+                                             Width="150" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Content="Tên học phần"
+                                           Margin="10"
+                                           Foreground="White" />
+                                    <TextBox Name="txbTenHP_HocPhan"
+                                             Text="{Binding TenHP_HocPhan}"
+                                             Margin="28 10"
+                                             Width="150" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Content="Số tín chỉ"
+                                           Margin="10"
+                                           Foreground="White" />
+                                    <TextBox Name="txbSoTC_HocPhan"
+                                             Text="{Binding SoTC_HocPhan}"
+                                             Margin="50 10"
+                                             Width="150" />
+                                </StackPanel>
+                            </StackPanel>
+                            <StackPanel Grid.Row="3"
+                                        Orientation="Horizontal">
+                                <Button Content="Cập nhật học phần"
+                                        Name="btnCapNhatHocPhan"
+                                        Margin="20 10"
+                                        Command="{Binding CapNhatCommand_HocPhan}"
+                                        Style="{StaticResource ButtonRed}"
+                                        Width="100"
+                                        Height="30"
+                                        Foreground="White" />
+                                <Button Content="Xóa học phần"
+                                        Name="btnXoaHocPhan"
+                                        Margin="20 10"
+                                        Command="{Binding XoaCommand_HocPhan}"
+                                        Style="{StaticResource ButtonRed}"
+                                        Width="100"
+                                        Height="30"
+                                        Foreground="White" />
+                                <Button Content="Thêm học phần"
+                                        Name="btnThemHocPhan"
+                                        Margin="20 10"
+                                        Command="{Binding ThemCommand_HocPhan}"
+                                        CommandParameter="{Binding ElementName=btnOK_HocPhan}"
+                                        Style="{StaticResource ButtonRed}"
+                                        Width="100"
+                                        Height="30"
+                                        Foreground="White" />
+                                <Button Name="btnOK_HocPhan"
+                                        Command="{Binding OKCommand_HocPhan}"
+                                        CommandParameter="{Binding ElementName=btnOK_HocPhan}"
+                                        Content="OK"
+                                        Margin="20 10"
+                                        Visibility="Collapsed"
+                                        Style="{StaticResource ButtonGreen}"
+                                        Width="100"
+                                        Height="30"
+                                        Foreground="White" />
+                            </StackPanel>
+                        </Grid>
+                    </Grid>
+                </Border>
+            </TabItem>
+            <TabItem Header="Thông tin tài khoản"
+                     Name="Info">
+                <Border Margin="20"
+                        CornerRadius="20"
+                        Background="#171835">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="5" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <GroupBox Grid.Column="0"
+                                  Width="400"
+                                  Height="470"
+                                  Margin="10"
+                                  Padding="10">
+                            <GroupBox.Header>
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="Images\personal.png"
+                                           Height="45"
+                                           Width="45"
+                                           Margin="5" />
+                                    <TextBlock FontWeight="Bold"
+                                               VerticalAlignment="Center">Thông tin tài khoản</TextBlock>
+                                </StackPanel>
+                            </GroupBox.Header>
+                            <StackPanel Orientation="Vertical">
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Content="Tên tài khoản"
+                                           Margin="10"
+                                           Foreground="White" />
+                                    <TextBox Name="txbTenTaiKhoan_Info"
+                                        Text="{Binding TenTaiKhoan_Info}"
+                                             Margin="80 10"
+                                             Width="150"
+                                             IsReadOnly="True" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Content="Họ đệm"
+                                           Margin="10"
+                                           Foreground="White" />
+                                    <TextBox Name="txbHoDem_Info"
+                                        Text="{Binding HoDem_Info}"
+                                             Margin="109 10"
+                                             Width="150" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Content="Tên"
+                                           Margin="10"
+                                           Foreground="White" />
+                                    <TextBox Name="txbTen_Info"
+                                        Text="{Binding Ten_Info}"
+                                             Margin="133 10"
+                                             Width="150" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Content="Giới tính"
+                                           Margin="10"
+                                           Foreground="White" />
+                                    <TextBox Name="txbGioiTinh_Info"
+                                        Text="{Binding GioiTinh_Info}"
+                                             Margin="107 10"
+                                             Width="150" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Content="Quê quán"
+                                           Margin="10"
+                                           Foreground="White" />
+                                    <TextBox Name="txbQueQuan_Info"
+                                        Text="{Binding QueQuan_Info}"
+                                             Margin="99 10"
+                                             Width="150" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Content="Ngày sinh"
+                                           Margin="10"
+                                           Foreground="White" />
+                                    <DatePicker Name="dpNgaySinh_Info"
+                                        SelectedDate="{Binding NgaySinh_Info}"
+                                                Margin="97 10"
+                                                Height="30"
+                                                Width="150" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Content="Số điện thoại"
+                                           Margin="10"
+                                           Foreground="White" />
+                                    <TextBox Name="txbSoDT_Info"
+                                        Text="{Binding SoDT_Info}"
+                                             Margin="79 10"
+                                             Width="150" />
+                                </StackPanel>
+                                <Button Content="Cập nhật"
+                                        Name="btnCapNhatInfo"
+                                        Command="{Binding CapNhatCommand_Info}"
+                                        Style="{StaticResource ButtonRed}"
+                                        Foreground="White"
+                                        Width="100"
+                                        Height="30"
+                                        Margin="10" />
+                            </StackPanel>
+                        </GroupBox>
+                        <GridSplitter Grid.Column="1"
+                                      Width="5"
+                                      HorizontalAlignment="Stretch" />
+                        <Grid Grid.Column="2">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <GroupBox Grid.Row="0"
+                                      Width="350"
+                                      Height="300"
+                                      Margin="10"
+                                      Padding="10">
+                                <GroupBox.Header>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image  Source="Images\re-pass.jpg"
+                                                Height="45"
+                                                Width="45"
+                                                Margin="5" />
+                                        <TextBlock FontWeight="Bold"
+                                                   VerticalAlignment="Center">Đổi mật khẩu</TextBlock>
+                                    </StackPanel>
+                                </GroupBox.Header>
+                                <StackPanel Orientation="Vertical">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Label Content="Mật khẩu cũ"
+                                               Margin="10"
+                                               Foreground="White" />
+                                        <PasswordBox Name="pwbMatKhauCu"
+                                                     Width="150"
+                                                     Height="30"
+                                                     Margin="53 10"
+                                                     Padding="5">
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="PasswordChanged">
+                                                    <i:InvokeCommandAction Command="{Binding PasswordChangedCommand_MatKhauCu_Info}"
+                                                                           CommandParameter="{Binding ElementName=pwbMatKhauCu}" />
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </PasswordBox>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Label Content="Mật khẩu mới"
+                                               Margin="10"
+                                               Foreground="White" />
+                                        <PasswordBox Name="pwbMatKhauMoi"
+                                                     Width="150"
+                                                     Height="30"
+                                                     Margin="46 10"
+                                                     Padding="5">
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="PasswordChanged">
+                                                    <i:InvokeCommandAction Command="{Binding PasswordChangedCommand_MatKhauMoi_Info}"
+                                                                           CommandParameter="{Binding ElementName=pwbMatKhauMoi}" />
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </PasswordBox>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Label Content="Nhập lại mật khẩu"
+                                               Margin="10"
+                                               Foreground="White" />
+                                        <PasswordBox Name="pwbNhapLaiMK"
+                                                     Width="150"
+                                                     Height="30"
+                                                     Margin="22 10"
+                                                     Padding="5">
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="PasswordChanged">
+                                                    <i:InvokeCommandAction Command="{Binding PasswordChangedCommand_NhapLaiMK_Info}"
+                                                                           CommandParameter="{Binding ElementName=pwbNhapLaiMK}" />
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </PasswordBox>
+                                    </StackPanel>
+                                    <Button Content="Đổi mật khẩu"
+                                            Name="btnDoiMatKhau"
+                                            Command="{Binding DoiMatKhauCommand_Info}"
+                                            Style="{StaticResource ButtonRed}"
+                                            Foreground="White"
+                                            Width="100"
+                                            Height="30"
+                                            Margin="10" />
+                                </StackPanel>
+                            </GroupBox>
+                            <StackPanel Orientation="Horizontal"
+                                        HorizontalAlignment="Center"
+                                        Grid.Row="1">
+                                <Button Content="Admin"
+                                        Name="btnAdmin"
+                                        Command="{Binding AdminCommand_Info}"
+                                        Style="{StaticResource ButtonRed}"
+                                        Foreground="White"
+                                        Width="100"
+                                        Height="30"
+                                        Margin="10" />
+                                <Button Content="Đăng xuất"
+                                        Name="btnDangXuat"
+                                        Command="{Binding DangXuatCommand_Info}"
+                                        CommandParameter="{Binding ElementName=managerView}"
+                                        Style="{StaticResource ButtonGreen}"
+                                        Foreground="White"
+                                        Width="100"
+                                        Height="30"
+                                        Margin="10" />
+                                <Button Content="Thoát"
+                                        Name="btnExit"
+                                        Command="{Binding ExitCommand_Info}"
+                                        CommandParameter="{Binding ElementName=managerView}"
+                                        Style="{StaticResource ButtonGreen}"
+                                        Foreground="White"
+                                        Width="100"
+                                        Height="30"
+                                        Margin="10" />
+                            </StackPanel>
+                        </Grid>
+                    </Grid>
+                </Border>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>

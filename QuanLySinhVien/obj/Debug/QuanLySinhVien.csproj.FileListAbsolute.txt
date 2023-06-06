@@ -1,0 +1,64 @@
+D:\QuanLySinhVien\QuanLySinhVien\bin\Debug\QuanLySinhVien.exe.config
+D:\QuanLySinhVien\QuanLySinhVien\bin\Debug\QuanLySinhVien.exe
+D:\QuanLySinhVien\QuanLySinhVien\bin\Debug\QuanLySinhVien.pdb
+D:\QuanLySinhVien\QuanLySinhVien\bin\Debug\Microsoft.Xaml.Behaviors.dll
+D:\QuanLySinhVien\QuanLySinhVien\bin\Debug\Microsoft.Xaml.Behaviors.pdb
+D:\QuanLySinhVien\QuanLySinhVien\bin\Debug\Microsoft.Xaml.Behaviors.xml
+D:\QuanLySinhVien\QuanLySinhVien\obj\Debug\Resources\DictionaryButton.baml
+D:\QuanLySinhVien\QuanLySinhVien\obj\Debug\Resources\DictionaryDataGrid.baml
+D:\QuanLySinhVien\QuanLySinhVien\obj\Debug\Resources\DictionaryTabControl.baml
+D:\QuanLySinhVien\QuanLySinhVien\obj\Debug\Resources\DictionaryTextBox.baml
+D:\QuanLySinhVien\QuanLySinhVien\obj\Debug\Views\AdminView.g.cs
+D:\QuanLySinhVien\QuanLySinhVien\obj\Debug\Views\LoginView.g.cs
+D:\QuanLySinhVien\QuanLySinhVien\obj\Debug\Views\ManagerView.g.cs
+D:\QuanLySinhVien\QuanLySinhVien\obj\Debug\Views\RegisterView.g.cs
+D:\QuanLySinhVien\QuanLySinhVien\obj\Debug\App.g.cs
+D:\QuanLySinhVien\QuanLySinhVien\obj\Debug\GeneratedInternalTypeHelper.g.cs
+D:\QuanLySinhVien\QuanLySinhVien\obj\Debug\QuanLySinhVien_MarkupCompile.cache
+D:\QuanLySinhVien\QuanLySinhVien\obj\Debug\QuanLySinhVien_MarkupCompile.lref
+D:\QuanLySinhVien\QuanLySinhVien\obj\Debug\App.baml
+D:\QuanLySinhVien\QuanLySinhVien\obj\Debug\Resources\ViewModelDictionary.baml
+D:\QuanLySinhVien\QuanLySinhVien\obj\Debug\Views\AdminView.baml
+D:\QuanLySinhVien\QuanLySinhVien\obj\Debug\Views\LoginView.baml
+D:\QuanLySinhVien\QuanLySinhVien\obj\Debug\Views\ManagerView.baml
+D:\QuanLySinhVien\QuanLySinhVien\obj\Debug\Views\RegisterView.baml
+D:\QuanLySinhVien\QuanLySinhVien\obj\Debug\QuanLySinhVien.g.resources
+D:\QuanLySinhVien\QuanLySinhVien\obj\Debug\QuanLySinhVien.Properties.Resources.resources
+D:\QuanLySinhVien\QuanLySinhVien\obj\Debug\QuanLySinhVien.csproj.GenerateResource.cache
+D:\QuanLySinhVien\QuanLySinhVien\obj\Debug\QuanLySinhVien.csproj.CoreCompileInputs.cache
+D:\QuanLySinhVien\QuanLySinhVien\obj\Debug\QuanLySinhVien.csproj.CopyComplete
+D:\QuanLySinhVien\QuanLySinhVien\obj\Debug\QuanLySinhVien.exe
+D:\QuanLySinhVien\QuanLySinhVien\obj\Debug\QuanLySinhVien.pdb
+D:\QuanLySinhVien\QuanLySinhVien\obj\Debug\QuanLySinhVien.csproj.AssemblyReference.cache
+C:\Users\Tai Pham\source\repos\QuanLySinhVien\QuanLySinhVien\bin\Debug\QuanLySinhVien.exe.config
+C:\Users\Tai Pham\source\repos\QuanLySinhVien\QuanLySinhVien\bin\Debug\QuanLySinhVien.exe
+C:\Users\Tai Pham\source\repos\QuanLySinhVien\QuanLySinhVien\bin\Debug\QuanLySinhVien.pdb
+C:\Users\Tai Pham\source\repos\QuanLySinhVien\QuanLySinhVien\bin\Debug\Microsoft.Xaml.Behaviors.dll
+C:\Users\Tai Pham\source\repos\QuanLySinhVien\QuanLySinhVien\bin\Debug\Microsoft.Xaml.Behaviors.pdb
+C:\Users\Tai Pham\source\repos\QuanLySinhVien\QuanLySinhVien\bin\Debug\Microsoft.Xaml.Behaviors.xml
+C:\Users\Tai Pham\source\repos\QuanLySinhVien\QuanLySinhVien\obj\Debug\QuanLySinhVien.csproj.AssemblyReference.cache
+C:\Users\Tai Pham\source\repos\QuanLySinhVien\QuanLySinhVien\obj\Debug\Resources\DictionaryButton.baml
+C:\Users\Tai Pham\source\repos\QuanLySinhVien\QuanLySinhVien\obj\Debug\Resources\DictionaryDataGrid.baml
+C:\Users\Tai Pham\source\repos\QuanLySinhVien\QuanLySinhVien\obj\Debug\Resources\DictionaryTabControl.baml
+C:\Users\Tai Pham\source\repos\QuanLySinhVien\QuanLySinhVien\obj\Debug\Resources\DictionaryTextBox.baml
+C:\Users\Tai Pham\source\repos\QuanLySinhVien\QuanLySinhVien\obj\Debug\Views\AdminView.g.cs
+C:\Users\Tai Pham\source\repos\QuanLySinhVien\QuanLySinhVien\obj\Debug\Views\LoginView.g.cs
+C:\Users\Tai Pham\source\repos\QuanLySinhVien\QuanLySinhVien\obj\Debug\Views\ManagerView.g.cs
+C:\Users\Tai Pham\source\repos\QuanLySinhVien\QuanLySinhVien\obj\Debug\Views\RegisterView.g.cs
+C:\Users\Tai Pham\source\repos\QuanLySinhVien\QuanLySinhVien\obj\Debug\App.g.cs
+C:\Users\Tai Pham\source\repos\QuanLySinhVien\QuanLySinhVien\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\Tai Pham\source\repos\QuanLySinhVien\QuanLySinhVien\obj\Debug\QuanLySinhVien_MarkupCompile.cache
+C:\Users\Tai Pham\source\repos\QuanLySinhVien\QuanLySinhVien\obj\Debug\QuanLySinhVien_MarkupCompile.lref
+C:\Users\Tai Pham\source\repos\QuanLySinhVien\QuanLySinhVien\obj\Debug\App.baml
+C:\Users\Tai Pham\source\repos\QuanLySinhVien\QuanLySinhVien\obj\Debug\Resources\ViewModelDictionary.baml
+C:\Users\Tai Pham\source\repos\QuanLySinhVien\QuanLySinhVien\obj\Debug\Views\AdminView.baml
+C:\Users\Tai Pham\source\repos\QuanLySinhVien\QuanLySinhVien\obj\Debug\Views\LoginView.baml
+C:\Users\Tai Pham\source\repos\QuanLySinhVien\QuanLySinhVien\obj\Debug\Views\ManagerView.baml
+C:\Users\Tai Pham\source\repos\QuanLySinhVien\QuanLySinhVien\obj\Debug\Views\RegisterView.baml
+C:\Users\Tai Pham\source\repos\QuanLySinhVien\QuanLySinhVien\obj\Debug\QuanLySinhVien.g.resources
+C:\Users\Tai Pham\source\repos\QuanLySinhVien\QuanLySinhVien\obj\Debug\QuanLySinhVien.Properties.Resources.resources
+C:\Users\Tai Pham\source\repos\QuanLySinhVien\QuanLySinhVien\obj\Debug\QuanLySinhVien.csproj.GenerateResource.cache
+C:\Users\Tai Pham\source\repos\QuanLySinhVien\QuanLySinhVien\obj\Debug\QuanLySinhVien.csproj.CoreCompileInputs.cache
+C:\Users\Tai Pham\source\repos\QuanLySinhVien\QuanLySinhVien\obj\Debug\QuanLySinhVien.csproj.CopyComplete
+C:\Users\Tai Pham\source\repos\QuanLySinhVien\QuanLySinhVien\obj\Debug\QuanLySinhVien.exe
+C:\Users\Tai Pham\source\repos\QuanLySinhVien\QuanLySinhVien\obj\Debug\QuanLySinhVien.pdb
